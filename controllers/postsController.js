@@ -48,6 +48,18 @@ function update(req, res){
 
 function destroy(req, res){
     res.send("eliminazione");
+    let id = food.findIndex((item) => {
+        return item.id == req.params.id;
+    })
+    if(id != -1){
+        food.splice(id, 1);
+        res.json(food);
+    }else{
+        res.status(404).send({
+            error: "Elemento non trovato"
+        });
+    }
+    
 }
 
 function modify(req, res){
