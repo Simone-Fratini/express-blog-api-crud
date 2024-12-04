@@ -10,7 +10,7 @@ const foodRouter = require("./routers/posts.js");
 
 app.use('/posts', foodRouter);
 
-router.all('*', (req, res) => {
+app.all('*', (req, res) => {
     res.status(404).send('<div>Pagina non trovata</div>');
 })
 
