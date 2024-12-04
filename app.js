@@ -1,7 +1,7 @@
 
 const express = require('express');
 const app = express()
-const port = 3000;
+const port = process.env.PORT;
 
 app.use(express.static('public'));
 
@@ -11,5 +11,5 @@ const foodRouter = require("./routers/posts.js");
 app.use('/posts', foodRouter);
 
 app.listen(port, () =>{
-    console.log('server is running');
+    console.log(`server is running on port ${port}`);
 })

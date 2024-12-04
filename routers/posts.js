@@ -2,25 +2,25 @@ const express = require('express');
 const router = express.Router();
 
 const food = require('../data/food.js');
-const { index, show, store, update, destroy, modify } = require('../controllers/postsController.js');
+const foodController = require('../controllers/postsController.js')
 
 // index
-router.get('/bacheca', index)
+router.get('/bacheca', foodController.index)
 
 // store
-router.post('/', store)
+router.post('/', foodController.store)
 
 //show
-router.get('/:id', show)
+router.get('/:id', foodController.show)
 
 // update
-router.put('/:id', update)
+router.put('/:id', foodController.update)
 
 // destroy
-router.delete('/:id', destroy)
+router.delete('/:id', foodController.destroy)
 
 // modify
-router.patch('/:id', modify)
+router.patch('/:id', foodController.modify)
 
 router.all('*', (req, res) => {
     res.status(404).send('<div>Pagina non trovata</div>');
