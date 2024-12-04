@@ -22,8 +22,6 @@ router.delete('/:id', foodController.destroy)
 // modify
 router.patch('/:id', foodController.modify)
 
-router.all('*', (req, res) => {
-    res.status(404).send('<div>Pagina non trovata</div>');
-})
+
 
 module.exports = router;
