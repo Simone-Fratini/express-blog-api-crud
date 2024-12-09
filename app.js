@@ -8,6 +8,9 @@ app.use(express.static('public'));
 //importiamo il router
 const foodRouter = require("./routers/posts.js");
 
+// Middleware per il parsing del body JSON
+app.use(express.json());
+
 app.use('/posts', foodRouter);
 
 app.all('*', (req, res) => {
@@ -17,3 +20,5 @@ app.all('*', (req, res) => {
 app.listen(port, () =>{
     console.log(`server is running on port ${port}`);
 })
+
+

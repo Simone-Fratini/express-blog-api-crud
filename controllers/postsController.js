@@ -39,15 +39,48 @@ function show(req, res){
 }
 
 function store(req, res){
-    res.send("creazione");
+    console.log(req.body);
+
+    let id = 0;
+    for(let item of food){
+        if(item.id > id){
+            id = item.id;
+        }
+    }
+
+    const newFood = {
+        id: id + 1,
+        name: req.body.name,
+        img: req.body.img,
+        content: req.body.content,
+        price: req.body.price,
+        tag: req.body.tag
+    }
+
+    food.push(newFood);
+    res.status(201).json(newFood);
 }
 
 function update(req, res){
-    res.send("modifica");
+    
+    let id = food.findIndex((item) => {
+        return item.id == req.params.id;
+    })
+    if(id != -1){
+        food[id].name = req.body.name;
+        food[id].img = req.body.img;
+        food[id].content = req.body.content;
+        food[id].price = req.body.price;
+        food[id].tag = req.body.tag;
+        res.json(food);
+    }else{
+        res.status(404).send({
+            error: "Elemento non trovato"
+        });
+    }
 }
 
 function destroy(req, res){
-    res.send("eliminazione");
     let id = food.findIndex((item) => {
         return item.id == req.params.id;
     })
@@ -63,7 +96,20 @@ function destroy(req, res){
 }
 
 function modify(req, res){
-    res.send("modifica parziale");
+    let id = food.findIndex((item) => {
+        return item.id == req.params.id;
+    })
+    if(id != -1){
+        for(let key in req.body){
+            food[id][key] = req.body[key];
+        }
+        res.json(food);
+    }else{
+        res.status(404).send({
+            error: "Elemento non trovato"
+        });
+    }
+    
 }
 
 module.exports = {index, show, store, update, destroy, modify};

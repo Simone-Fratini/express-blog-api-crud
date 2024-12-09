@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const food = require('../data/food.js');
 const foodController = require('../controllers/postsController.js')
 
 // index
-router.get('/bacheca', foodController.index)
+router.get('/', foodController.index)
 
 // store
 router.post('/', foodController.store)
