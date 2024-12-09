@@ -82,7 +82,7 @@ function update(req, res){
 
 function destroy(req, res){
     let id = food.findIndex((item) => {
-        return item.id == req.params.id;
+        return item.id == parseInt(req.params.id);
     })
     if(id != -1){
         food.splice(id, 1);
@@ -97,7 +97,7 @@ function destroy(req, res){
 
 function modify(req, res){
     let id = food.findIndex((item) => {
-        return item.id == req.params.id;
+        return item.id == parseInt(req.params.id);
     })
     if(id != -1){
         for(let key in req.body){
