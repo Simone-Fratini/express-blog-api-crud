@@ -10,12 +10,11 @@ const foodRouter = require("./routers/posts.js");
 
 // Middleware per il parsing del body JSON
 app.use(express.json());
+const notFound = require('./middlewares/notFound.js');
 
 app.use('/posts', foodRouter);
 
-app.all('*', (req, res) => {
-    res.status(404).send('<div>Pagina non trovata</div>');
-})
+app.use(notFound);
 
 app.listen(port, () =>{
     console.log(`server is running on port ${port}`);
