@@ -1,5 +1,4 @@
 
-
 const food = require('../data/food.js');
 
 

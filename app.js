@@ -7,12 +7,14 @@ app.use(express.static('public'));
 
 //importiamo il router
 const foodRouter = require("./routers/posts.js");
+const aiPostsRouter = require("./routers/aiPostsRouter.js");
 
 // Middleware per il parsing del body JSON
 app.use(express.json());
 const notFound = require('./middlewares/notFound.js');
 
 app.use('/posts', foodRouter);
+app.use('/aiposts', aiPostsRouter);
 
 app.use(notFound);
 
