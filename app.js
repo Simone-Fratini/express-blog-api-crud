@@ -12,9 +12,10 @@ const aiPostsRouter = require("./routers/aiPostsRouter.js");
 // Middleware per il parsing del body JSON
 app.use(express.json());
 const notFound = require('./middlewares/notFound.js');
+const apiNotFound = require('./middlewares/groqApiNotFound.js');
 
 app.use('/posts', foodRouter);
-app.use('/aiposts', aiPostsRouter);
+app.use('/aiposts', apiNotFound, aiPostsRouter);
 
 app.use(notFound);
 
