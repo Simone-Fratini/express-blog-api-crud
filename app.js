@@ -1,5 +1,6 @@
 
 const express = require('express');
+const cors = require('cors');
 const app = express()
 const port = process.env.PORT;
 
@@ -8,6 +9,9 @@ app.use(express.static('public'));
 //importiamo il router
 const foodRouter = require("./routers/posts.js");
 const aiPostsRouter = require("./routers/aiPostsRouter.js");
+
+// Abilita CORS
+app.use(cors());
 
 // Middleware per il parsing del body JSON
 app.use(express.json());
